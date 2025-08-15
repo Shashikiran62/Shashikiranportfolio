@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="icons/favicon.png">
+  <title>Shashikiran's - Projects</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Courier New', monospace;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+      color: #00ff88;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 2rem;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    .terminal-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .code-line {
+      position: absolute;
+      color: #00ff88;
+      font-size: clamp(0.8rem, 2vw, 1rem);
+      font-weight: 600;
+      opacity: 0.2;
+      font-family: 'Courier New', monospace;
+      white-space: nowrap;
+      animation: scrollCodeVertical linear infinite;
+    }
+
+    @keyframes scrollCodeVertical {
+      0% { transform: translateY(-100vh); opacity: 0.2; }
+      100% { transform: translateY(100vh); opacity: 0.2; }
+    }
+
+    .content {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: clamp(1rem, 5vw, 2rem);
+    }
+
+    .header-nav {
+      position: relative;
+      top: -20px;
+      left: 0;
+      display: flex;
+      align-items: center;
+      gap: clamp(0.5rem, 2vw, 1rem);
+      margin-bottom: 2rem;
+      padding: 0.5rem;
+      width: 100%;
+      max-width: 1400px;
+      justify-content: space-between;
+      flex-wrap: nowrap;
+    }
+
+    h1 {
+      font-size: clamp(1.2rem, 3.5vw, 1.8rem);
+      text-shadow: 0 0 12px #00ff88, 0 0 24px #00ff88;
+      animation: neonGlow 1.5s ease-in-out infinite alternate;
+      color: #00ff88;
+      font-weight: bold;
+      letter-spacing: 1px;
+      white-space: nowrap;
+    }
+
+    @keyframes neonGlow {
+      from { text-shadow: 0 0 12px #00ff88, 0 0 24px #00ff88; }
+      to { text-shadow: 0 0 24px #00ff88, 0 0 36px #00ff88; }
+    }
+
+    .nav-links {
+      display: flex;
+      gap: clamp(0.5rem, 1.5vw, 1rem);
+      flex-wrap: nowrap;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: #00ff88;
+      text-decoration: none;
+      font-size: clamp(0.8rem, 2vw, 1rem);
+      position: relative;
+      transition: color 0.3s ease;
+      padding: clamp(0.3rem, 1vw, 0.5rem) clamp(0.5rem, 1.5vw, 0.8rem);
+      border-radius: 6px;
+      background: rgba(0, 255, 136, 0.1);
+      transition: background 0.3s ease, color 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover {
+      color: #ffffff;
+      background: rgba(0, 255, 136, 0.3);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background-color: #00ff88;
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .menu-icon {
+      display: none;
+      color: #00ff88;
+      font-size: clamp(1.2rem, 3vw, 1.5rem);
+      cursor: pointer;
+      padding: clamp(0.3rem, 1vw, 0.5rem);
+      background: rgba(0, 255, 136, 0.1);
+      border-radius: 6px;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .menu-icon:hover {
+      background: rgba(0, 255, 136, 0.3);
+      transform: scale(1.1);
+    }
+
+    .hello {
+      border: 2px solid #00ff88;
+      background: rgba(0, 255, 136, 0.1);
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    /* Media Queries for Responsiveness */
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem;
+      }
+
+      .header-nav {
+        gap: clamp(0.3rem, 1vw, 0.5rem);
+        padding: 0.5rem;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      h1 {
+        font-size: clamp(1rem, 3vw, 1.4rem);
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: calc(100% + 2rem);
+        right: 0;
+        width: clamp(120px, 35vw, 150px);
+        z-index: 10;
+        opacity: 0;
+        transform: translateX(20px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+      }
+
+      .nav-links.active {
+        display: flex;
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .nav-links a {
+        font-size: clamp(0.7rem, 1.8vw, 0.9rem);
+        padding: clamp(0.4rem, 1vw, 0.6rem);
+        margin: 0.4rem 0;
+        border-radius: 6px;
+        text-align: left;
+        background: transparent;
+        border-left: 3px solid #00ff88;
+        color: #00ff88;
+        position: relative;
+        transition: all 0.3s ease;
+        text-shadow: 0 0 5px #00ff88;
+        padding-left: 1rem;
+      }
+
+      .nav-links a::before {
+        content: '>>';
+        position: absolute;
+        left: 0.3rem;
+        color: #00cc66;
+        font-size: clamp(0.6rem, 1.5vw, 0.8rem);
+        opacity: 0.7;
+        transition: opacity 0.3s ease;
+      }
+
+      .nav-links a:hover {
+        color: #ffffff;
+        border-left-color: #ffffff;
+        transform: translateX(5px);
+        text-shadow: 0 0 8px #ffffff;
+      }
+
+      .nav-links a:hover::before {
+        opacity: 1;
+      }
+
+      .nav-links a::after {
+        display: none;
+      }
+
+      .nav-links .hello {
+        border: 1px solid #00ff88;
+        border-left: 3px solid #00ff88;
+        box-shadow: 0 0 8px #00ff88;
+      }
+
+      .menu-icon {
+        display: block;
+      }
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .project-card {
+      background: transparent;
+      padding: 0;
+      text-align: center;
+      position: relative;
+      transition: transform 0.3s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .project-card img {
+      max-width: 100%;
+      height: 150px;
+      object-fit: cover;
+      background: transparent;
+      transition: transform 0.3s ease;
+    }
+
+    .project-card:hover img {
+      transform: scale(1.2); /* Enlarge image on hover */
+    }
+
+    .project-card h3 {
+      margin: 0.5rem 0;
+      font-size: 1.1rem;
+    }
+
+    .info-icon {
+      position: absolute;
+      top: 10%;
+      left: 87%;
+      transform: translate(-50%, -50%);
+      color: #fdfffe;
+      text-shadow: 0 0 12px #000000, 0 0 24px #000000;
+      animation: neonGlow 1.5s ease-in-out infinite alternate;
+      font-size: 1.5rem;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .project-card:hover .info-icon {
+      opacity: 1; /* Show info icon on hover */
+    }
+
+    .info-icon:hover {
+      color: #ffffff;
+    }
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex; /* Centers content */
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.6); /* Slightly darker overlay */
+  backdrop-filter: blur(6px); /* Background blur */
+  z-index: 1001;
+  opacity: 0;
+  transform: scale(1.05);
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.modal.active {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+.modal-content {
+  background: rgba(10, 10, 10, 0.85);
+  padding: 5rem;
+  border: 2px solid #00ff88;
+  border-radius: 10px;
+  text-align: center;
+  width: 90%;
+  max-width: 1000px;
+  color: #00ff88;
+  position: relative;
+  box-shadow: 0 0 15px #00ff88;
+  transform: translateY(-10px);
+  transition: transform 0.4s ease;
+}
+
+.modal.active .modal-content {
+  transform: translateY(0);
+}
+
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      color: #00ff88;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .close-btn:hover {
+      color: #ffffff;
+    }
+  </style>
+</head>
+<body>
+  <div class="terminal-bg" id="terminal-bg"></div>
+  <div class="content">
+    <div class="header-nav">
+      <h1>Shashikiran</h1>
+      <i class="fas fa-ellipsis-h menu-icon" id="menu-toggle"></i>
+      <div class="nav-links" id="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="education.html">Education</a>
+        <a href="internship.html">Internship</a>
+        <a href="projects.html" class="hello">Projects</a>
+        <a href="https://drive.google.com/file/d/184fhz3A59H3giduA7udDTuOQ0X1Sg1dX/view?usp=sharing">Resume</a>
+      </div>
+    </div>
+    <div class="projects-grid">
+      <div class="project-card">
+        <img src="icons/Attendance_Pro1.png" alt="Attendance Pro">
+        <h3>Attendance Pro</h3>
+        <i class="fas fa-info-circle info-icon" onclick="toggleDetails(this)" data-modal="#modal1"></i>
+       
+      </div>
+      <div class="project-card">
+        <img src="icons/ImagetoMesh1.jpg" alt="Image2Mesh">
+        <h3>Image2Mesh</h3>
+        <i class="fas fa-info-circle info-icon" onclick="toggleDetails(this)" data-modal="#modal2"></i>
+        
+      </div>
+      <div class="project-card">
+        <img src="icons/RPA.png" alt="EduTrack RPA">
+        <h3>EduTrack RPA</h3>
+        <i class="fas fa-info-circle info-icon" onclick="toggleDetails(this)" data-modal="#modal3"></i>
+        
+      </div>
+      <div class="project-card">
+        <img src="/icons/food-delivery2.jpg" alt="OrderEase">
+        <h3>OrderEase</h3>
+        <i class="fas fa-info-circle info-icon" onclick="toggleDetails(this)" data-modal="#modal4"></i>
+        
+      </div>
+       <div class="modal" id="modal1">
+          <div class="modal-content">
+            <i class="fas fa-times close-btn" onclick="closeModal('#modal1')"></i>
+            <h2>Attendance Pro</h2>
+            <ul>
+              <li>Developed Attendance Pro, a facial recognition-based attendance management system using Python, Streamlit, and OpenCV.</li>
+              <li>Implemented face registration and KNN-based facial recognition to automate attendance marking via webcam.</li>
+              <li>Built a real-time attendance dashboard with CSV, Excel, and PDF report generation.</li>
+              <li>Added SMS notification feature via Twilio API to alert parents of absentees in one click and a responsive Streamlit UI.</li>                    
+            </ul>
+          </div>
+        </div>
+        <div class="modal" id="modal2">
+          <div class="modal-content">
+            <i class="fas fa-times close-btn" onclick="closeModal('#modal2')"></i>
+            <h2>Image2Mesh</h2>
+            <ul>
+              <li>Developed a deep learning-based 3D reconstruction system using the TripoSR architecture to generate high-quality 3D meshes from single 2D input images.</li>
+              <li>Built an interactive web interface with the Gradio framework for real-time 3D model generation with background removal and mesh resolution control.</li>
+            </ul>          
+          </div>
+        </div>
+        <div class="modal" id="modal3">
+          <div class="modal-content">
+            <i class="fas fa-times close-btn" onclick="closeModal('#modal3')"></i>
+            <h2>EduTrack RPA</h2>
+            <ul>
+              <li>Automated data retrieval from Excel and ERP systems to capture marks and attendance records.</li>
+              <li>Implemented screenshot capture of ERP results and attendance summaries for accurate reporting.</li>
+              <li>Configured email automation to send personalized performance updates to parents without manual intervention.</li>
+            </ul>          
+          </div>
+        </div>
+        <div class="modal" id="modal4">
+          <div class="modal-content">
+            <i class="fas fa-times close-btn" onclick="closeModal('#modal4')"></i>
+            <h2>OrderEase</h2>
+            <ul>
+              <li>Developed Food Ordering System using HTML, CSS, JavaScript, PHP and MySQL for managing online food orders.</li>
+              <li>Implemented screenshot capture of ERP results and attendance summaries for accurate reporting.</li>
+              <li>Designed a customer-facing interface with food search, category browsing, and order placement functionality.</li>
+            </ul>          
+           </div>
+        </div>
+    </div>
+  </div>
+  <script>
+    function createCodeLine() {
+      const terminalDiv = document.getElementById('terminal-bg');
+      const codeLine = document.createElement('div');
+      codeLine.className = 'code-line';
+      const codeSnippets = [
+        '0101010101',
+        'function init() { return true; }',
+        '0xFF 0xAB 0x12',
+        'if (x > 0) { console.log("run"); }',
+        '10110011',
+        'const data = [1, 0, 1];',
+        '// TODO: Optimize loop',
+        '0b11001010',
+        'while (true) { break; }',
+        'var x = 42;'
+      ];
+      codeLine.textContent = codeSnippets[Math.floor(Math.random() * codeSnippets.length)];
+      codeLine.style.left = `${Math.random() * 100}vw`;
+      codeLine.style.animationDuration = `${Math.random() * 10 + 5}s`;
+      codeLine.style.animationDelay = `${Math.random() * 3}s`;
+      if (Math.random() > 0.5) {
+        codeLine.style.animationName = 'scrollCodeVerticalReverse';
+      }
+      terminalDiv.appendChild(codeLine);
+
+      setTimeout(() => {
+        codeLine.remove();
+      }, 15000);
+    }
+
+    const styleSheet = document.createElement('style');
+    styleSheet.textContent = `
+      @keyframes scrollCodeVerticalReverse {
+        0% { transform: translateY(100vh); opacity: 0.2; }
+        100% { transform: translateY(-100vh); opacity: 0.2; }
+      }
+    `;
+    document.head.appendChild(styleSheet);
+
+    function startTerminalAnimation() {
+      for (let i = 0; i < 20; i++) {
+        setTimeout(createCodeLine, Math.random() * 3000);
+      }
+      setInterval(createCodeLine, 500);
+    }
+
+    startTerminalAnimation();
+
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.getElementById('nav-links');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    // Toggle project details in modal
+    function toggleDetails(icon) {
+      const modalId = icon.getAttribute('data-modal');
+      const modal = document.querySelector(modalId);
+      modal.classList.toggle('active');
+    }
+
+    // Close modal
+    function closeModal(modalId) {
+      const modal = document.querySelector(modalId);
+      modal.classList.remove('active');
+    }
+  </script>
+</body>
+</html>

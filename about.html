@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="icons/favicon.png">
+  <title>Shashikiran's - About</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Courier New', monospace;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+      color: #00ff88;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 2rem;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    .terminal-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .code-line {
+      position: absolute;
+      color: #00ff88;
+      font-size: clamp(0.8rem, 2vw, 1rem);
+      font-weight: 600;
+      opacity: 0.2;
+      font-family: 'Courier New', monospace;
+      white-space: nowrap;
+      animation: scrollCodeVertical linear infinite;
+    }
+
+    @keyframes scrollCodeVertical {
+      0% { transform: translateY(-100vh); opacity: 0.2; }
+      100% { transform: translateY(100vh); opacity: 0.2; }
+    }
+
+    .content {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: clamp(1rem, 5vw, 2rem);
+    }
+
+    .header-nav {
+      position: relative;
+      top: -20px ;
+      left: 0;
+      display: flex;
+      align-items: center;
+      gap: clamp(0.5rem, 2vw, 1rem);
+      margin-bottom: 2rem;
+      padding: 0.5rem;
+      width: 100%;
+      max-width: 1400px;
+      justify-content: space-between;
+      flex-wrap: nowrap;
+    }
+
+    h1 {
+      font-size: clamp(1.2rem, 3.5vw, 1.8rem);
+      text-shadow: 0 0 12px #00ff88, 0 0 24px #00ff88;
+      animation: neonGlow 1.5s ease-in-out infinite alternate;
+      color: #00ff88;
+      font-weight: bold;
+      letter-spacing: 1px;
+      white-space: nowrap;
+    }
+
+    @keyframes neonGlow {
+      from { text-shadow: 0 0 12px #00ff88, 0 0 24px #00ff88; }
+      to { text-shadow: 0 0 24px #00ff88, 0 0 36px #00ff88; }
+    }
+
+    .nav-links {
+      display: flex;
+      gap: clamp(0.5rem, 1.5vw, 1rem);
+      flex-wrap: nowrap;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: #00ff88;
+      text-decoration: none;
+      font-size: clamp(0.8rem, 2vw, 1rem);
+      position: relative;
+      transition: color 0.3s ease;
+      padding: clamp(0.3rem, 1vw, 0.5rem) clamp(0.5rem, 1.5vw, 0.8rem);
+      border-radius: 6px;
+      background: rgba(0, 255, 136, 0.1);
+      transition: background 0.3s ease, color 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover {
+      color: #ffffff;
+      background: rgba(0, 255, 136, 0.3);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background-color: #00ff88;
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .menu-icon {
+      display: none;
+      color: #00ff88;
+      font-size: clamp(1.2rem, 3vw, 1.5rem);
+      cursor: pointer;
+      padding: clamp(0.3rem, 1vw, 0.5rem);
+      background: rgba(0, 255,- 136, 0.1);
+      border-radius: 6px;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .menu-icon:hover {
+      background: rgba(0, 255, 136, 0.3);
+      transform: scale(1.1);
+    }
+
+    .about-section {
+      display: flex;
+      flex-direction: row;
+      gap: clamp(1rem, 3vw, 2rem);
+      margin-bottom: 2rem;
+      align-items: center;
+      margin-top: 5vh;
+    }
+
+    .about-text {
+      flex: 1;
+      max-width: 100%;
+      color: #00ff88;
+    }
+
+    .profile-img {
+      width: clamp(150px, 25vw, 200px);
+      height: auto;
+      border: 2px solid #00ff88;
+      border-radius: 12px;
+      box-shadow: 0 0 15px #00ff88;
+      transition: transform 0.3s ease;
+    }
+
+    .profile-img:hover {
+      transform: scale(1.05);
+    }
+
+    .about-text p {
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 0 5px #00ff88;
+    }
+
+    .details {
+      margin-bottom: 2rem;
+    }
+
+    .details ul {
+      list-style: none;
+    }
+
+    .details li {
+      font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+      margin-bottom: 0.75rem;
+      color: #00ff88;
+      text-shadow: 0 0 5px #00ff88;
+    }
+
+    .details li::before {
+      content: ">> ";
+      color: #00cc66;
+    }
+
+    .interests {
+      margin-top: 2rem;
+    }
+
+    .interests h2 {
+      font-size: clamp(1.4rem, 3vw, 1.6rem);
+      margin-bottom: 1rem;
+      text-shadow: 0 0 10px #00ff88;
+    }
+
+    .interests ul {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: clamp(1rem, 2vw, 1.5rem);
+    }
+
+    .interests li {
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+      padding: clamp(1rem, 2vw, 1.5rem);
+      border: 1px solid #00ff88;
+      border-radius: 12px;
+      text-align: center;
+      color: #00ff88;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px #00ff88;
+    }
+
+    .interests li:hover {
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 0 20px #00ff88;
+      background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+    }
+
+    .hello {
+      border: 2px solid #00ff88;
+      background: rgba(0, 255, 136, 0.1);
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    /* Media Queries for Responsiveness */
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem;
+      }
+
+      .header-nav {
+        gap: clamp(0.3rem, 1vw, 0.5rem);
+        padding: 0.5rem;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      h1 {
+        font-size: clamp(1rem, 3vw, 1.4rem);
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: calc(100% + 2rem); /* Increased to avoid overlap with profile image */
+        right: 0;
+        width: clamp(120px, 35vw, 150px);
+        z-index: 10;
+        opacity: 0;
+        transform: translateX(20px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+      }
+
+      .nav-links.active {
+        display: flex;
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .nav-links a {
+        font-size: clamp(0.7rem, 1.8vw, 0.9rem);
+        padding: clamp(0.4rem, 1vw, 0.6rem);
+        margin: 0.4rem 0;
+        border-radius: 6px;
+        text-align: left;
+        background: transparent;
+        border-left: 3px solid #00ff88;
+        color: #00ff88;
+        position: relative;
+        transition: all 0.3s ease;
+        text-shadow: 0 0 5px #00ff88;
+        padding-left: 1rem;
+      }
+
+      .nav-links a::before {
+        content: '>>';
+        position: absolute;
+        left: 0.3rem;
+        color: #00cc66;
+        font-size: clamp(0.6rem, 1.5vw, 0.8rem);
+        opacity: 0.7;
+        transition: opacity 0.3s ease;
+      }
+
+      .nav-links a:hover {
+        color: #ffffff;
+        border-left-color: #ffffff;
+        transform: translateX(5px);
+        text-shadow: 0 0 8px #ffffff;
+      }
+
+      .nav-links a:hover::before {
+        opacity: 1;
+      }
+
+      .nav-links a::after {
+        display: none;
+      }
+
+      .nav-links .hello {
+        border: 1px solid #00ff88;
+        border-left: 3px solid #00ff88;
+        box-shadow: 0 0 8px #00ff88;
+      }
+
+      .menu-icon {
+        display: block;
+      }
+
+      .about-section {
+        flex-direction: column;
+        align-items: center;
+        margin-top: 5vh;
+      }
+
+      .profile-img {
+        width: clamp(120px, 40vw, 150px);
+      }
+
+      .about-text {
+        max-width: 100%;
+        text-align: center;
+      }
+
+      .interests ul {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: clamp(0.9rem, 4vw, 1.2rem);
+      }
+
+      .nav-links {
+        width: clamp(100px, 40vw, 130px);
+      }
+
+      .nav-links a {
+        font-size: clamp(0.6rem, 2.5vw, 0.8rem);
+        padding: clamp(0.3rem, 1vw, 0.5rem);
+        padding-left: 1rem;
+      }
+
+      .about-text p {
+        font-size: clamp(0.9rem, 4vw, 1rem);
+      }
+
+      .details li {
+        font-size: clamp(0.8rem, 3.5vw, 1rem);
+      }
+
+      .interests h2 {
+        font-size: clamp(1.2rem, 4vw, 1.4rem);
+      }
+
+      .interests li {
+        padding: 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="terminal-bg" id="terminal-bg"></div>
+  <div class="content">
+    <div class="header-nav">
+      <h1>Shashikiran</h1>
+      <i class="fas fa-ellipsis-h menu-icon" id="menu-toggle"></i>
+      <div class="nav-links" id="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html" class="hello">About</a>
+        <a href="education.html">Education</a>
+        <a href="internship.html">Internship</a>
+        <a href="projects.html">Projects</a>
+        <a href="https://drive.google.com/file/d/184fhz3A59H3giduA7udDTuOQ0X1Sg1dX/view?usp=sharing">Resume</a>
+      </div>
+    </div>
+    <div class="about-section">
+      <img src="icons/shashikiranphoto.jpeg" alt="Shashikiran" class="profile-img">
+      <div class="about-text">
+        <p>A dedicated computer science student with a profound passion for technology, actively pursuing a bachelor’s degree in engineering. Exploring coding and emerging technologies with keen interest.</p>
+        <div class="details">
+          <ul>
+            <li>Birthday: 06 February 2004</li>
+            <li>Phone: +91 6361915256</li>
+            <li>City: Udupi, Karnataka</li>
+            <li>Email: shashikiran624123@gmail.com</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="interests">
+      <h2>Skills and Tools</h2>
+      <ul>
+        <li>C</li>
+        <li>Java</li>
+        <li>JavaScript</li>
+        <li>Sql</li>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>Git & Github</li>
+        <li>Uipath</li>
+        <li>Figma</li>
+        <li>Basics of Python</li>
+        <li>Eclipse</li>
+        <li>VScode</li>
+      </ul>
+    </div>
+        <div class="interests">
+      <h2>INTERESTS</h2>
+      <ul>
+        <li>Software Development</li>
+        <li>Machine Learning</li>
+        <li>Web Development</li>
+        <li>Tester</li>
+      </ul>
+    </div>
+  </div>
+  <script>
+    function createCodeLine() {
+      const terminalDiv = document.getElementById('terminal-bg');
+      const codeLine = document.createElement('div');
+      codeLine.className = 'code-line';
+      const codeSnippets = [
+        '0101010101',
+        'function init() { return true; }',
+        '0xFF 0xAB 0x12',
+        'if (x > 0) { console.log("run"); }',
+        '10110011',
+        'const data = [1, 0, 1];',
+        '// TODO: Optimize loop',
+        '0b11001010',
+        'while (true) { break; }',
+        'printf("Shashikiran");',
+        '<h1>Hi I am Shashikiran !!! </h1>' ,
+        'for(int i=0;i<n;i++){}',
+        'var x = 42;'
+      ];
+      codeLine.textContent = codeSnippets[Math.floor(Math.random() * codeSnippets.length)];
+      codeLine.style.left = `${Math.random() * 100}vw`;
+      codeLine.style.animationDuration = `${Math.random() * 10 + 5}s`;
+      codeLine.style.animationDelay = `${Math.random() * 3}s`;
+      if (Math.random() > 0.5) {
+        codeLine.style.animationName = 'scrollCodeVerticalReverse';
+      }
+      terminalDiv.appendChild(codeLine);
+
+      setTimeout(() => {
+        codeLine.remove();
+      }, 15000);
+    }
+
+    const styleSheet = document.createElement('style');
+    styleSheet.textContent = `
+      @keyframes scrollCodeVerticalReverse {
+        0% { transform: translateY(100vh); opacity: 0.2; }
+        100% { transform: translateY(-100vh); opacity: 0.2; }
+      }
+    `;
+    document.head.appendChild(styleSheet);
+
+    function startTerminalAnimation() {
+      for (let i = 0; i < 20; i++) {
+        setTimeout(createCodeLine, Math.random() * 3000);
+      }
+      setInterval(createCodeLine, 500);
+    }
+
+    startTerminalAnimation();
+
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.getElementById('nav-links');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>

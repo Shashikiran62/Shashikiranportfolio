@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" type="image/png" href="icons/favicon.png">
+  <title>Shashikiran's Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Courier New', monospace;
+      background-color: #0a0a0a;
+      color: #00ff88;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 2rem;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    .terminal-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .code-line {
+      position: absolute;
+      color: #00ff88;
+      font-size: clamp(0.8rem, 2vw, 1rem);
+      font-weight: 600;
+      opacity: 0.2;
+      font-family: 'Courier New', monospace;
+      white-space: nowrap;
+      animation: scrollCodeVertical linear infinite;
+    }
+
+    @keyframes scrollCodeVertical {
+      0% { transform: translateY(-100vh); opacity: 0.2; }
+      100% { transform: translateY(100vh); opacity: 0.2; }
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      height: 70vh;
+      width: 90%;
+      max-width: 900px;
+      margin: 0 auto;
+      transform: translateY(10%);
+    }
+
+    h2 {
+      font-size: clamp(2rem, 5vw, 2.5rem);
+      margin-bottom: 1.5rem;
+      text-shadow: 0 0 10px #00ff88, 0 0 20px #00ff88;
+      animation: neonGlow 1.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes neonGlow {
+      from { text-shadow: 0 0 10px #00ff88, 0 0 20px #00ff88; }
+      to { text-shadow: 0 0 20px #00ff88, 0 0 30px #00ff88; }
+    }
+
+    .subtitle {
+      font-size: clamp(1rem, 3vw, 1.2rem);
+      color: #00cc66;
+      margin-bottom: 2rem;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      gap: clamp(1rem, 3vw, 2rem);
+      margin-bottom: 2rem;
+    }
+
+    .nav-links a {
+      color: #00ff88;
+      text-decoration: none;
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #00cc66;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
+      background-color: #00ff88;
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .links-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      gap: clamp(1rem, 3vw, 2rem);
+      width: 100%;
+      animation: fadeIn 1.5s ease-out;
+    }
+
+    .link-card {
+      text-decoration: none;
+      color: #00ff88;
+      transition: transform 0.3s ease;
+    }
+
+    .link-card:hover {
+      transform: scale(1.1);
+    }
+
+    .link-icon {
+      width: clamp(1.5rem, 4vw, 2rem);
+      height: clamp(1.5rem, 4vw, 2rem);
+      object-fit: contain;
+      transition: transform 0.3s ease;
+      filter: brightness(0) saturate(100%) invert(38%) sepia(93%) saturate(1350%) hue-rotate(85deg) brightness(95%) contrast(119%);
+    }
+
+    .link-card:hover .link-icon {
+      transform: rotate(360deg);
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 8px;
+      height: 1.2rem;
+      background-color: #00ff88;
+      vertical-align: middle;
+      animation: blink 1s step-end infinite;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="terminal-bg" id="terminal-bg"></div>
+  <div class="content">
+    <h2>Shashikiran</h2>
+    <div class="subtitle">I'm <span id="typing-text"></span><span class="cursor"></span></div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="education.html">Education</a>
+      <a href="internship.html">Internship</a>
+      <a href="projects.html">Projects</a>
+      <a href="https://drive.google.com/file/d/184fhz3A59H3giduA7udDTuOQ0X1Sg1dX/view?usp=sharing">Resume</a>
+    </div>
+    <div class="links-container">
+      <a href="https://www.linkedin.com/in/shashikiran6/" class="link-card">
+        <img src="icons/linkedin-blue.svg" alt="LinkedIn Logo" class="link-icon">
+      </a>
+      <a href="https://github.com/" class="link-card">
+        <img src="icons/github.svg" alt="GitHub Logo" class="link-icon">
+      </a>
+      <a href="https://www.google.com/" class="link-card">
+        <img src="icons/gmail.svg" alt="Google Logo" class="link-icon">
+      </a>
+    </div>
+  </div>
+  <script>
+    function createCodeLine() {
+      const terminalDiv = document.getElementById('terminal-bg');
+      const codeLine = document.createElement('div');
+      codeLine.className = 'code-line';
+      const codeSnippets = [
+        '0101010101',
+        'function init() { return true; }',
+        '0xFF 0xAB 0x12',
+        'if (x > 0) { console.log("run"); }',
+        '10110011',
+        'const data = [1, 0, 1];',
+        '// TODO: Optimize loop',
+        '0b11001010',
+        'while (true) { break; }',
+        'var x = 42;',
+        'printf("Shashikiran");',
+        '<h1>Hi I am Shashikiran !!! </h1>' ,
+        'for(int i=0;i<n;i++){}',
+        'Scanner s= new Scanner(System.in);'
+      ];
+      codeLine.textContent = codeSnippets[Math.floor(Math.random() * codeSnippets.length)];
+      codeLine.style.left = `${Math.random() * 100}vw`;
+      codeLine.style.animationDuration = `${Math.random() * 10 + 5}s`;
+      codeLine.style.animationDelay = `${Math.random() * 3}s`;
+      if (Math.random() > 0.5) {
+        codeLine.style.animationName = 'scrollCodeVerticalReverse';
+      }
+      terminalDiv.appendChild(codeLine);
+
+      setTimeout(() => {
+        codeLine.remove();
+      }, 15000);
+    }
+
+    const styleSheet = document.createElement('style');
+    styleSheet.textContent = `
+      @keyframes scrollCodeVerticalReverse {
+        0% { transform: translateY(100vh); opacity: 0.2; }
+        100% { transform: translateY(-100vh); opacity: 0.2; }
+      }
+    `;
+    document.head.appendChild(styleSheet);
+
+    function startTerminalAnimation() {
+      for (let i = 0; i < 20; i++) {
+        setTimeout(createCodeLine, Math.random() * 3000);
+      }
+      setInterval(createCodeLine, 500);
+    }
+
+    startTerminalAnimation();
+
+    // Typing animation for subtitle
+    const words = ['Coder', 'Developer', 'Designer'];
+    let wordIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    const typingText = document.getElementById('typing-text');
+    const typingSpeed = 100;
+    const deletingSpeed = 50;
+    const pauseBetween = 2000;
+
+    function type() {
+      const currentWord = words[wordIndex];
+      if (isDeleting) {
+        typingText.textContent = currentWord.substring(0, charIndex--);
+        if (charIndex < 0) {
+          isDeleting = false;
+          wordIndex = (wordIndex + 1) % words.length;
+          setTimeout(type, 500);
+        } else {
+          setTimeout(type, deletingSpeed);
+        }
+      } else {
+        typingText.textContent = currentWord.substring(0, charIndex++);
+        if (charIndex > currentWord.length) {
+          isDeleting = true;
+          setTimeout(type, pauseBetween);
+        } else {
+          setTimeout(type, typingSpeed);
+        }
+      }
+    }
+
+    type();
+  </script>
+</body>
+</html>
