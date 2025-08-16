@@ -173,12 +173,18 @@
         flex-direction: column;
         position: absolute;
         top: calc(100% + 2rem);
-        right: 0;
+        right: 0; /* Align to the rightmost side */
         width: clamp(120px, 35vw, 150px);
-        z-index: 10;
+        z-index: 1001; /* Ensure it stays above other content */
         opacity: 0;
         transform: translateX(20px);
         transition: opacity 0.3s ease, transform 0.3s ease;
+        background: rgba(10, 10, 10, 0.85); /* Professional dark background */
+        padding: 1rem; /* Reduced padding for a cleaner look */
+        border: 1px solid #00ff88; /* Simple border */
+        border-radius: 5px; /* Slight rounding */
+        backdrop-filter: blur(6px); /* Maintain blur effect */
+        transform-origin: top right; /* Adjust transform origin for right alignment */
       }
 
       .nav-links.active {
@@ -188,53 +194,33 @@
       }
 
       .nav-links a {
-        font-size: clamp(0.7rem, 1.8vw, 0.9rem);
-        padding: clamp(0.4rem, 1vw, 0.6rem);
-        margin: 0.4rem 0;
-        border-radius: 6px;
-        text-align: left;
-        background: transparent;
-        border-left: 3px solid #00ff88;
+        font-size: clamp(0.9rem, 2vw, 1rem);
+        padding: 0.5rem 1rem;
+        margin: 0.3rem 0;
         color: #00ff88;
-        position: relative;
-        transition: all 0.3s ease;
-        text-shadow: 0 0 5px #00ff88;
-        padding-left: 1rem;
-      }
-
-      .nav-links a::before {
-        content: '>>';
-        position: absolute;
-        left: 0.3rem;
-        color: #00cc66;
-        font-size: clamp(0.6rem, 1.5vw, 0.8rem);
-        opacity: 0.7;
-        transition: opacity 0.3s ease;
+        text-decoration: none;
+        transition: color 0.3s ease;
+        white-space: nowrap;
       }
 
       .nav-links a:hover {
         color: #ffffff;
-        border-left-color: #ffffff;
-        transform: translateX(5px);
-        text-shadow: 0 0 8px #ffffff;
       }
 
-      .nav-links a:hover::before {
-        opacity: 1;
-      }
-
-      .nav-links a::after {
-        display: none;
-      }
-
-      .nav-links .hello {
-        border: 1px solid #00ff88;
-        border-left: 3px solid #00ff88;
-        box-shadow: 0 0 8px #00ff88;
+      /* Special styling for the Home link with an icon */
+      .nav-links a[href="index.html"]::before {
+        content: "\f015"; /* Font Awesome home icon */
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900; /* Ensure solid style */
+        margin-right: 0.5rem;
       }
 
       .menu-icon {
         display: block;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr; /* Single column for all cards in mobile view */
       }
     }
 
@@ -296,49 +282,48 @@
       color: #ffffff;
     }
 
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex; /* Centers content */
-  justify-content: center;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.6); /* Slightly darker overlay */
-  backdrop-filter: blur(6px); /* Background blur */
-  z-index: 1001;
-  opacity: 0;
-  transform: scale(1.05);
-  pointer-events: none;
-  transition: opacity 0.4s ease, transform 0.4s ease;
-}
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex; /* Centers content */
+      justify-content: center;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.6); /* Slightly darker overlay */
+      backdrop-filter: blur(6px); /* Background blur */
+      z-index: 1001;
+      opacity: 0;
+      transform: scale(1.05);
+      pointer-events: none;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
 
-.modal.active {
-  opacity: 1;
-  transform: scale(1);
-  pointer-events: auto;
-}
+    .modal.active {
+      opacity: 1;
+      transform: scale(1);
+      pointer-events: auto;
+    }
 
-.modal-content {
-  background: rgba(10, 10, 10, 0.85);
-  padding: 5rem;
-  border: 2px solid #00ff88;
-  border-radius: 10px;
-  text-align: center;
-  width: 90%;
-  max-width: 1000px;
-  color: #00ff88;
-  position: relative;
-  box-shadow: 0 0 15px #00ff88;
-  transform: translateY(-10px);
-  transition: transform 0.4s ease;
-}
+    .modal-content {
+      background: rgba(10, 10, 10, 0.85);
+      padding: 5rem;
+      border: 2px solid #00ff88;
+      border-radius: 10px;
+      text-align: center;
+      width: 90%;
+      max-width: 1000px;
+      color: #00ff88;
+      position: relative;
+      box-shadow: 0 0 15px #00ff88;
+      transform: translateY(-10px);
+      transition: transform 0.4s ease;
+    }
 
-.modal.active .modal-content {
-  transform: translateY(0);
-}
-
+    .modal.active .modal-content {
+      transform: translateY(0);
+    }
 
     .close-btn {
       position: absolute;
@@ -375,70 +360,66 @@
         <img src="icons/Attendance_Pro1.png" alt="Attendance Pro">
         <h3>Attendance Pro</h3>
         <i class="fas fa-info-circle info-icon" onclick="toggleDetails(this)" data-modal="#modal1"></i>
-       
       </div>
       <div class="project-card">
         <img src="icons/ImagetoMesh1.jpg" alt="Image2Mesh">
         <h3>Image2Mesh</h3>
         <i class="fas fa-info-circle info-icon" onclick="toggleDetails(this)" data-modal="#modal2"></i>
-        
       </div>
       <div class="project-card">
         <img src="icons/RPA.png" alt="EduTrack RPA">
         <h3>EduTrack RPA</h3>
         <i class="fas fa-info-circle info-icon" onclick="toggleDetails(this)" data-modal="#modal3"></i>
-        
       </div>
       <div class="project-card">
         <img src="icons/food-delivery2.jpg" alt="OrderEase">
         <h3>OrderEase</h3>
         <i class="fas fa-info-circle info-icon" onclick="toggleDetails(this)" data-modal="#modal4"></i>
-        
       </div>
-       <div class="modal" id="modal1">
-          <div class="modal-content">
-            <i class="fas fa-times close-btn" onclick="closeModal('#modal1')"></i>
-            <h2>Attendance Pro</h2>
-            <ul>
-              <li>Developed Attendance Pro, a facial recognition-based attendance management system using Python, Streamlit, and OpenCV.</li>
-              <li>Implemented face registration and KNN-based facial recognition to automate attendance marking via webcam.</li>
-              <li>Built a real-time attendance dashboard with CSV, Excel, and PDF report generation.</li>
-              <li>Added SMS notification feature via Twilio API to alert parents of absentees in one click and a responsive Streamlit UI.</li>                    
-            </ul>
-          </div>
+      <div class="modal" id="modal1">
+        <div class="modal-content">
+          <i class="fas fa-times close-btn" onclick="closeModal('#modal1')"></i>
+          <h2>Attendance Pro</h2>
+          <ul>
+            <li>Developed Attendance Pro, a facial recognition-based attendance management system using Python, Streamlit, and OpenCV.</li>
+            <li>Implemented face registration and KNN-based facial recognition to automate attendance marking via webcam.</li>
+            <li>Built a real-time attendance dashboard with CSV, Excel, and PDF report generation.</li>
+            <li>Added SMS notification feature via Twilio API to alert parents of absentees in one click and a responsive Streamlit UI.</li>
+          </ul>
         </div>
-        <div class="modal" id="modal2">
-          <div class="modal-content">
-            <i class="fas fa-times close-btn" onclick="closeModal('#modal2')"></i>
-            <h2>Image2Mesh</h2>
-            <ul>
-              <li>Developed a deep learning-based 3D reconstruction system using the TripoSR architecture to generate high-quality 3D meshes from single 2D input images.</li>
-              <li>Built an interactive web interface with the Gradio framework for real-time 3D model generation with background removal and mesh resolution control.</li>
-            </ul>          
-          </div>
+      </div>
+      <div class="modal" id="modal2">
+        <div class="modal-content">
+          <i class="fas fa-times close-btn" onclick="closeModal('#modal2')"></i>
+          <h2>Image2Mesh</h2>
+          <ul>
+            <li>Developed a deep learning-based 3D reconstruction system using the TripoSR architecture to generate high-quality 3D meshes from single 2D input images.</li>
+            <li>Built an interactive web interface with the Gradio framework for real-time 3D model generation with background removal and mesh resolution control.</li>
+          </ul>
         </div>
-        <div class="modal" id="modal3">
-          <div class="modal-content">
-            <i class="fas fa-times close-btn" onclick="closeModal('#modal3')"></i>
-            <h2>EduTrack RPA</h2>
-            <ul>
-              <li>Automated data retrieval from Excel and ERP systems to capture marks and attendance records.</li>
-              <li>Implemented screenshot capture of ERP results and attendance summaries for accurate reporting.</li>
-              <li>Configured email automation to send personalized performance updates to parents without manual intervention.</li>
-            </ul>          
-          </div>
+      </div>
+      <div class="modal" id="modal3">
+        <div class="modal-content">
+          <i class="fas fa-times close-btn" onclick="closeModal('#modal3')"></i>
+          <h2>EduTrack RPA</h2>
+          <ul>
+            <li>Automated data retrieval from Excel and ERP systems to capture marks and attendance records.</li>
+            <li>Implemented screenshot capture of ERP results and attendance summaries for accurate reporting.</li>
+            <li>Configured email automation to send personalized performance updates to parents without manual intervention.</li>
+          </ul>
         </div>
-        <div class="modal" id="modal4">
-          <div class="modal-content">
-            <i class="fas fa-times close-btn" onclick="closeModal('#modal4')"></i>
-            <h2>OrderEase</h2>
-            <ul>
-              <li>Developed Food Ordering System using HTML, CSS, JavaScript, PHP and MySQL for managing online food orders.</li>
-              <li>Implemented screenshot capture of ERP results and attendance summaries for accurate reporting.</li>
-              <li>Designed a customer-facing interface with food search, category browsing, and order placement functionality.</li>
-            </ul>          
-           </div>
+      </div>
+      <div class="modal" id="modal4">
+        <div class="modal-content">
+          <i class="fas fa-times close-btn" onclick="closeModal('#modal4')"></i>
+          <h2>OrderEase</h2>
+          <ul>
+            <li>Developed Food Ordering System using HTML, CSS, JavaScript, PHP and MySQL for managing online food orders.</li>
+            <li>Implemented screenshot capture of ERP results and attendance summaries for accurate reporting.</li>
+            <li>Designed a customer-facing interface with food search, category browsing, and order placement functionality.</li>
+          </ul>
         </div>
+      </div>
     </div>
   </div>
   <script>
