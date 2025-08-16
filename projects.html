@@ -151,6 +151,79 @@
       transition: background 0.3s ease, color 0.3s ease;
     }
 
+    /* Media Queries for Responsiveness */
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem;
+      }
+
+      .header-nav {
+        gap: clamp(0.3rem, 1vw, 0.5rem);
+        padding: 0.5rem;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      h1 {
+        font-size: clamp(1rem, 3vw, 1.4rem);
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: calc(100% + 2rem);
+        right: 0; /* Align to the rightmost side */
+        width: clamp(120px, 35vw, 150px);
+        z-index: 1001; /* Ensure it stays above other content */
+        opacity: 0;
+        transform: translateX(20px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        background: rgba(10, 10, 10, 0.85); /* Professional dark background */
+        padding: 1rem; /* Reduced padding for a cleaner look */
+        border: 1px solid #00ff88; /* Simple border */
+        border-radius: 5px; /* Slight rounding */
+        backdrop-filter: blur(6px); /* Maintain blur effect */
+        transform-origin: top right; /* Adjust transform origin for right alignment */
+      }
+
+      .nav-links.active {
+        display: flex;
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .nav-links a {
+        font-size: clamp(0.9rem, 2vw, 1rem);
+        padding: 0.5rem 1rem;
+        margin: 0.3rem 0;
+        color: #00ff88;
+        text-decoration: none;
+        transition: color 0.3s ease;
+        white-space: nowrap;
+      }
+
+      .nav-links a:hover {
+        color: #ffffff;
+      }
+
+      /* Special styling for the Home link with an icon */
+      .nav-links a[href="index.html"]::before {
+        content: "\f015"; /* Font Awesome home icon */
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900; /* Ensure solid style */
+        margin-right: 0.5rem;
+      }
+
+      .menu-icon {
+        display: block;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr; /* Single column for mobile view */
+      }
+    }
+
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -246,6 +319,7 @@
       box-shadow: 0 0 15px #00ff88;
       transform: translateY(-10px);
       transition: transform 0.4s ease;
+      padding-bottom: 3rem; /* Added padding to accommodate lower close button */
     }
 
     .modal.active .modal-content {
@@ -254,89 +328,17 @@
 
     .close-btn {
       position: absolute;
-      top: 10px;
+      top: 90%; /* Moved lower to 90% from the top */
       right: 10px;
       color: #00ff88;
       font-size: 1.5rem;
       cursor: pointer;
       transition: color 0.3s ease;
+      transform: translateY(-50%); /* Center vertically at the new position */
     }
 
     .close-btn:hover {
       color: #ffffff;
-    }
-
-    /* Media Queries for Responsiveness */
-    @media (max-width: 768px) {
-      body {
-        padding: 1rem;
-      }
-
-      .header-nav {
-        gap: clamp(0.3rem, 1vw, 0.5rem);
-        padding: 0.5rem;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      h1 {
-        font-size: clamp(1rem, 3vw, 1.4rem);
-      }
-
-      .nav-links {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: calc(100% + 2rem);
-        right: 0; /* Align to the rightmost side */
-        width: clamp(120px, 35vw, 150px);
-        z-index: 1001; /* Ensure it stays above other content */
-        opacity: 0;
-        transform: translateX(20px);
-        transition: opacity 0.3s ease, transform 0.3s ease;
-        background: rgba(10, 10, 10, 0.85); /* Professional dark background */
-        padding: 1rem; /* Reduced padding for a cleaner look */
-        border: 1px solid #00ff88; /* Simple border */
-        border-radius: 5px; /* Slight rounding */
-        backdrop-filter: blur(6px); /* Maintain blur effect */
-        transform-origin: top right; /* Adjust transform origin for right alignment */
-      }
-
-      .nav-links.active {
-        display: flex;
-        opacity: 1;
-        transform: translateX(0);
-      }
-
-      .nav-links a {
-        font-size: clamp(0.9rem, 2vw, 1rem);
-        padding: 0.5rem 1rem;
-        margin: 0.3rem 0;
-        color: #00ff88;
-        text-decoration: none;
-        transition: color 0.3s ease;
-        white-space: nowrap;
-      }
-
-      .nav-links a:hover {
-        color: #ffffff;
-      }
-
-      /* Special styling for the Home link with an icon */
-      .nav-links a[href="index.html"]::before {
-        content: "\f015"; /* Font Awesome home icon */
-        font-family: "Font Awesome 6 Free";
-        font-weight: 900; /* Ensure solid style */
-        margin-right: 0.5rem;
-      }
-
-      .menu-icon {
-        display: block;
-      }
-
-      .projects-grid {
-        grid-template-columns: 1fr; /* Single column for mobile view */
-      }
     }
   </style>
 </head>
