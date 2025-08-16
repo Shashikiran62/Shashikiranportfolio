@@ -135,7 +135,7 @@
       font-size: clamp(1.2rem, 3vw, 1.5rem);
       cursor: pointer;
       padding: clamp(0.3rem, 1vw, 0.5rem);
-      background: rgba(0, 255,- 136, 0.1);
+      background: rgba(0, 255, 136, 0.1);
       border-radius: 6px;
       transition: background 0.3s ease, transform 0.3s ease;
     }
@@ -263,10 +263,16 @@
         top: calc(100% + 2rem); /* Increased to avoid overlap with profile image */
         right: 0;
         width: clamp(120px, 35vw, 150px);
-        z-index: 10;
+        z-index: 1001; /* Ensure it stays above other content */
         opacity: 0;
         transform: translateX(20px);
         transition: opacity 0.3s ease, transform 0.3s ease;
+        background: rgba(10, 10, 10, 0.85); /* Professional dark background */
+        padding: 1rem; /* Reduced padding for a cleaner look */
+        border: 1px solid #00ff88; /* Simple border */
+        border-radius: 5px; /* Slight rounding */
+        backdrop-filter: blur(6px); /* Maintain blur effect */
+        transform-origin: top right; /* Adjust transform origin for right alignment */
       }
 
       .nav-links.active {
@@ -276,49 +282,25 @@
       }
 
       .nav-links a {
-        font-size: clamp(0.7rem, 1.8vw, 0.9rem);
-        padding: clamp(0.4rem, 1vw, 0.6rem);
-        margin: 0.4rem 0;
-        border-radius: 6px;
-        text-align: left;
-        background: transparent;
-        border-left: 3px solid #00ff88;
+        font-size: clamp(0.9rem, 2vw, 1rem);
+        padding: 0.5rem 1rem;
+        margin: 0.3rem 0;
         color: #00ff88;
-        position: relative;
-        transition: all 0.3s ease;
-        text-shadow: 0 0 5px #00ff88;
-        padding-left: 1rem;
-      }
-
-      .nav-links a::before {
-        content: '>>';
-        position: absolute;
-        left: 0.3rem;
-        color: #00cc66;
-        font-size: clamp(0.6rem, 1.5vw, 0.8rem);
-        opacity: 0.7;
-        transition: opacity 0.3s ease;
+        text-decoration: none;
+        transition: color 0.3s ease;
+        white-space: nowrap;
       }
 
       .nav-links a:hover {
         color: #ffffff;
-        border-left-color: #ffffff;
-        transform: translateX(5px);
-        text-shadow: 0 0 8px #ffffff;
       }
 
-      .nav-links a:hover::before {
-        opacity: 1;
-      }
-
-      .nav-links a::after {
-        display: none;
-      }
-
-      .nav-links .hello {
-        border: 1px solid #00ff88;
-        border-left: 3px solid #00ff88;
-        box-shadow: 0 0 8px #00ff88;
+      /* Special styling for the Home link with an icon */
+      .nav-links a[href="index.html"]::before {
+        content: "\f015"; /* Font Awesome home icon */
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900; /* Ensure solid style */
+        margin-right: 0.5rem;
       }
 
       .menu-icon {
@@ -424,7 +406,7 @@
         <li>VScode</li>
       </ul>
     </div>
-        <div class="interests">
+    <div class="interests">
       <h2>INTERESTS</h2>
       <ul>
         <li>Software Development</li>
