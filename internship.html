@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/png" href="icons/favicon.png">
-  <title>Shashikiran's - Internship</title>
+  <title>Shashikiran's - Projects</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <style>
     * {
@@ -61,7 +61,7 @@
 
     .header-nav {
       position: relative;
-      top: -20px ;
+      top: -20px;
       left: 0;
       display: flex;
       align-items: center;
@@ -145,96 +145,6 @@
       transform: scale(1.1);
     }
 
-    .about-section {
-      display: flex;
-      flex-direction: column;
-      gap: clamp(1rem, 3vw, 2rem);
-      margin-bottom: 2rem;
-      align-items: center;
-      margin-top: 8vh;
-    }
-
-    .internship-container {
-      display: flex;
-      gap: clamp(1rem, 3vw, 2rem);
-      align-items: flex-start;
-      flex-wrap: wrap;
-      justify-content: center;
-      width: 100%;
-    }
-
-    .internship-item {
-      background: linear-gradient(135deg, rgba(10, 10, 26, 0.7) 0%, rgba(26, 42, 42, 0.7) 100%);
-      border: 2px solid #00ff88;
-      border-radius: 12px;
-      padding: clamp(1rem, 2vw, 1.5rem);
-      box-shadow: none;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      text-align: left;
-      width: clamp(250px, 90%, 1100px);
-      overflow: hidden;
-      position: relative;
-    }
-
-    .internship-item:hover {
-      transform: translateY(-10px) scale(1.05);
-      box-shadow: 0 0 25px #00ff88, inset 0 0 15px #00cc66;
-    }
-
-    .internship-text {
-      font-size: clamp(0.9rem, 2.5vw, 1.1rem);
-      color: #00ff88;
-      text-shadow: 0 0 5px #00ff88;
-      padding: 0.5rem;
-      background: rgba(0, 255, 136, 0.1);
-      border-radius: 8px;
-      width: 100%;
-      box-sizing: border-box;
-      margin: 0;
-      animation: fadeIn 1.5s ease-in-out;
-    }
-
-    .internship-text .title {
-      font-weight: bold;
-      font-size: clamp(1.2rem, 3vw, 1.4rem);
-      color: #00ff88;
-      margin-bottom: 0.75rem;
-    }
-
-    .internship-text .date {
-      font-size: clamp(0.9rem, 2.5vw, 1.1rem);
-      margin-bottom: 0.75rem;
-      color: #00ff88;
-      font-weight: bold;
-    }
-
-    .internship-text .role {
-      font-style: italic;
-      font-size: clamp(0.8rem, 2.2vw, 1rem);
-      margin-bottom: 0.75rem;
-      color: #00ff88;
-    }
-
-    .internship-text .description {
-      margin-left: 1.5rem;
-    }
-
-    .internship-text .description ul {
-      list-style-type: disc;
-      padding-left: 1.5rem;
-      font-size: clamp(0.8rem, 2.2vw, 1rem);
-      color: #00ff88;
-    }
-
-    .internship-text .description ul li {
-      margin-bottom: 0.5rem;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
     .hello {
       border: 2px solid #00ff88;
       background: rgba(0, 255, 136, 0.1);
@@ -263,7 +173,7 @@
         flex-direction: column;
         position: absolute;
         top: calc(100% + 2rem);
-        right: 0;
+        right: 0; /* Align to the rightmost side */
         width: clamp(120px, 35vw, 150px);
         z-index: 1001; /* Ensure it stays above other content */
         opacity: 0;
@@ -309,79 +219,124 @@
         display: block;
       }
 
-      .about-section {
-        flex-direction: column;
-        align-items: center;
-        margin-top: 5vh;
-      }
-
-      .internship-container {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .internship-item {
-        width: clamp(200px, 80%, 300px);
-        background: linear-gradient(135deg, rgba(10, 10, 26, 0.7) 0%, rgba(26, 42, 42, 0.7) 100%);
-        box-shadow: none;
-      }
-
-      .internship-item:hover {
-        transform: translateY(-10px) scale(1.05);
-        box-shadow: 0 0 25px #00ff88, inset 0 0 15px #00cc66;
-      }
-
-      .internship-text .title {
-        font-size: clamp(1rem, 2.5vw, 1.2rem);
-      }
-
-      .internship-text .date {
-        font-size: clamp(0.8rem, 2.2vw, 1rem);
-      }
-
-      .internship-text .role {
-        font-size: clamp(0.7rem, 2vw, 0.9rem);
-      }
-
-      .internship-text .description ul {
-        font-size: clamp(0.7rem, 2vw, 0.9rem);
+      .projects-grid {
+        grid-template-columns: 1fr; /* Single column for all cards in mobile view */
       }
     }
 
-    @media (max-width: 480px) {
-      h1 {
-        font-size: clamp(0.9rem, 4vw, 1.2rem);
-      }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 2rem;
+    }
 
-      .nav-links {
-        width: clamp(100px, 40vw, 130px);
-      }
+    .project-card {
+      background: transparent;
+      padding: 0;
+      text-align: center;
+      position: relative;
+      transition: transform 0.3s ease;
+    }
 
-      .nav-links a {
-        font-size: clamp(0.6rem, 2.5vw, 0.8rem);
-        padding: clamp(0.3rem, 1vw, 0.5rem);
-        padding-left: 1rem;
-      }
+    .project-card:hover {
+      transform: translateY(-5px);
+    }
 
-      .internship-text {
-        font-size: clamp(0.8rem, 3.5vw, 1rem);
-      }
+    .project-card img {
+      max-width: 100%;
+      height: 150px;
+      object-fit: cover;
+      background: transparent;
+      transition: transform 0.3s ease;
+    }
 
-      .internship-text .title {
-        font-size: clamp(0.9rem, 2.5vw, 1.1rem);
-      }
+    .project-card:hover img {
+      transform: scale(1.2); /* Enlarge image on hover */
+    }
 
-      .internship-text .date {
-        font-size: clamp(0.7rem, 2vw, 0.9rem);
-      }
+    .project-card h3 {
+      margin: 0.5rem 0;
+      font-size: 1.1rem;
+    }
 
-      .internship-text .role {
-        font-size: clamp(0.6rem, 1.8vw, 0.8rem);
-      }
+    .info-icon {
+      position: absolute;
+      top: 10%;
+      left: 87%;
+      transform: translate(-50%, -50%);
+      color: #fdfffe;
+      text-shadow: 0 0 12px #000000, 0 0 24px #000000;
+      animation: neonGlow 1.5s ease-in-out infinite alternate;
+      font-size: 1.5rem;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
 
-      .internship-text .description ul {
-        font-size: clamp(0.6rem, 1.8vw, 0.8rem);
-      }
+    .project-card:hover .info-icon {
+      opacity: 1; /* Show info icon on hover */
+    }
+
+    .info-icon:hover {
+      color: #ffffff;
+    }
+
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex; /* Centers content */
+      justify-content: center;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.6); /* Slightly darker overlay */
+      backdrop-filter: blur(6px); /* Background blur */
+      z-index: 1001;
+      opacity: 0;
+      transform: scale(1.05);
+      pointer-events: none;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .modal.active {
+      opacity: 1;
+      transform: scale(1);
+      pointer-events: auto;
+    }
+
+    .modal-content {
+      background: rgba(10, 10, 10, 0.85);
+      padding: 5rem;
+      border: 2px solid #00ff88;
+      border-radius: 10px;
+      text-align: center;
+      width: 90%;
+      max-width: 1000px;
+      color: #00ff88;
+      position: relative;
+      box-shadow: 0 0 15px #00ff88;
+      transform: translateY(-10px);
+      transition: transform 0.4s ease;
+    }
+
+    .modal.active .modal-content {
+      transform: translateY(0);
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      color: #00ff88;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .close-btn:hover {
+      color: #ffffff;
     }
   </style>
 </head>
@@ -395,29 +350,74 @@
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
         <a href="education.html">Education</a>
-        <a href="internship.html" class="hello">Internship</a>
-        <a href="projects.html">Projects</a>
-        <a href="https://drive.google.com/file/d/1jrzukDj-a7nPw04oQUlmA19_cHFdc8B_/view?usp=sharing">Resume</a>
+        <a href="internship.html">Internship</a>
+        <a href="projects.html" class="hello">Projects</a>
+        <a href="https://drive.google.com/file/d/184fhz3A59H3giduA7udDTuOQ0X1Sg1dX/view?usp=sharing">Resume</a>
       </div>
     </div>
-    <div class="about-section">
-      <div class="internship-container">
-        <div class="internship-item">
-          <div class="internship-text">
-            <span class="title">Elogixa Technology Pvt.Ltd, Karkala</span> <a href="https://elogixa.co.in/"  style="color: #00cc66">Link</a><br>
-            <span class="date">Feb 2025 - Jun 2025</span><br>
-            <span class="role">Student Intern</span>
-            <div class="description">
-              <ul>
-                <li>Engineered a comprehensive HR Management System using Node.js, MongoDB, and Express.js with JWT-based authentication and role-based access control.</li>
-                <li>Implemented core attendance tracking system with detailed metrics including shift timings, work duration, and real-time status monitoring.</li>
-                <li>Developed an advanced training management module featuring document uploads, employee assignment, and a feedback mechanism.</li>
-                <li>Created a sophisticated leave management system with multiple leave types and balance tracking.</li>
-                <li>Built a robust goal management system with proof submission capabilities, progress tracking, and HR evaluation features.</li>
-                <li>Designed comprehensive reporting infrastructure covering performance, attendance, leave, and training metrics with multi-format export options.</li>
-              </ul>
-            </div>
-          </div>
+    <div class="projects-grid">
+      <div class="project-card">
+        <img src="icons/Attendance_Pro1.png" alt="Attendance Pro">
+        <h3>Attendance Pro</h3>
+        <i class="fas fa-info-circle info-icon" onclick="toggleDetails(this)" data-modal="#modal1"></i>
+      </div>
+      <div class="project-card">
+        <img src="icons/ImagetoMesh1.jpg" alt="Image2Mesh">
+        <h3>Image2Mesh</h3>
+        <i class="fas fa-info-circle info-icon" onclick="toggleDetails(this)" data-modal="#modal2"></i>
+      </div>
+      <div class="project-card">
+        <img src="icons/RPA.png" alt="EduTrack RPA">
+        <h3>EduTrack RPA</h3>
+        <i class="fas fa-info-circle info-icon" onclick="toggleDetails(this)" data-modal="#modal3"></i>
+      </div>
+      <div class="project-card">
+        <img src="icons/food-delivery2.jpg" alt="OrderEase">
+        <h3>OrderEase</h3>
+        <i class="fas fa-info-circle info-icon" onclick="toggleDetails(this)" data-modal="#modal4"></i>
+      </div>
+      <div class="modal" id="modal1">
+        <div class="modal-content">
+          <i class="fas fa-times close-btn" onclick="closeModal('#modal1')"></i>
+          <h2>Attendance Pro</h2>
+          <ul>
+            <li>Developed Attendance Pro, a facial recognition-based attendance management system using Python, Streamlit, and OpenCV.</li>
+            <li>Implemented face registration and KNN-based facial recognition to automate attendance marking via webcam.</li>
+            <li>Built a real-time attendance dashboard with CSV, Excel, and PDF report generation.</li>
+            <li>Added SMS notification feature via Twilio API to alert parents of absentees in one click and a responsive Streamlit UI.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="modal" id="modal2">
+        <div class="modal-content">
+          <i class="fas fa-times close-btn" onclick="closeModal('#modal2')"></i>
+          <h2>Image2Mesh</h2>
+          <ul>
+            <li>Developed a deep learning-based 3D reconstruction system using the TripoSR architecture to generate high-quality 3D meshes from single 2D input images.</li>
+            <li>Built an interactive web interface with the Gradio framework for real-time 3D model generation with background removal and mesh resolution control.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="modal" id="modal3">
+        <div class="modal-content">
+          <i class="fas fa-times close-btn" onclick="closeModal('#modal3')"></i>
+          <h2>EduTrack RPA</h2>
+          <ul>
+            <li>Automated data retrieval from Excel and ERP systems to capture marks and attendance records.</li>
+            <li>Implemented screenshot capture of ERP results and attendance summaries for accurate reporting.</li>
+            <li>Configured email automation to send personalized performance updates to parents without manual intervention.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="modal" id="modal4">
+        <div class="modal-content">
+          <i class="fas fa-times close-btn" onclick="closeModal('#modal4')"></i>
+          <h2>OrderEase</h2>
+          <ul>
+            <li>Developed Food Ordering System using HTML, CSS, JavaScript, PHP and MySQL for managing online food orders.</li>
+            <li>Implemented screenshot capture of ERP results and attendance summaries for accurate reporting.</li>
+            <li>Designed a customer-facing interface with food search, category browsing, and order placement functionality.</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -437,9 +437,6 @@
         '// TODO: Optimize loop',
         '0b11001010',
         'while (true) { break; }',
-        'printf("Shashikiran");',
-        '<h1>Hi I am Shashikiran !!! </h1>' ,
-        'for(int i=0;i<n;i++){}',
         'var x = 42;'
       ];
       codeLine.textContent = codeSnippets[Math.floor(Math.random() * codeSnippets.length)];
@@ -481,6 +478,19 @@
     menuToggle.addEventListener('click', () => {
       navLinks.classList.toggle('active');
     });
+
+    // Toggle project details in modal
+    function toggleDetails(icon) {
+      const modalId = icon.getAttribute('data-modal');
+      const modal = document.querySelector(modalId);
+      modal.classList.toggle('active');
+    }
+
+    // Close modal
+    function closeModal(modalId) {
+      const modal = document.querySelector(modalId);
+      modal.classList.remove('active');
+    }
   </script>
 </body>
 </html>
